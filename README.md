@@ -1,42 +1,74 @@
-<<<<<<< HEAD
-# Pokédex Angular
+# PokeDex en Azure Static Web Apps
 
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![codecov](https://codecov.io/gh/keilermora/pokedex-angular/branch/master/graph/badge.svg?token=9E0D28IOFT)](https://codecov.io/gh/keilermora/pokedex-angular)
-[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+Despliegue de la aplicación **PokeDex** (Angular) para **Pueblo Paleta Inc.**, realizado en la nube pública **Microsoft Azure** usando el servicio **Azure Static Web Apps**.
 
-[https://keilermora.github.io/pokedex-angular/](https://keilermora.github.io/pokedex-angular/)
+-   **URL pública:** https://lively-water-0e141011e.5.azurestaticapps.net/
+-   **Repositorio:** https://github.com/AlejandroPae/pokedex
+-   **Autor:** Alejandro Paez Perez
 
-La aplicación muestra el listado y el detalle de los Pokémon de las primeras 3 generaciones.
+----------
 
-La imagen que representa un Pokémon en el listado muestra las variaciones que estos tuvieron durante las primeras versiones, desde la versión Green (1996) hasta la version Emerald (2005).
+## 1. ¿Por qué Azure Static Web Apps?
 
-Los detalles de un Pokémon individual muestra sus estadísticas base y los registros de la Pokédex de las diferentes versiones.
+La PokeDex es una aplicación Angular que, una vez compilada, son solo archivos estáticos. Azure Static Web Apps sirve este tipo de aplicaciones, se integra con GitHub (cada `git push` despliega automáticamente) y tiene un plan **Free** suficiente para este trabajo. Además entrega HTTPS por defecto y permite configurar encabezados de seguridad.
 
-El proyecto fue desarrollado usando la librería de JavaScript [Angular](https://angular.io/) para crear la interfaz de usuario, en comunicación con la Api RESTful [PokéAPI](https://pokeapi.co/).
+----------
 
-## Requisitos mínimos
+## 2. Crear la cuenta en Azure
 
-- [Nodejs](https://nodejs.org) con soporte de largo plazo (LTS).
-- Un navegador web
+1.  Entra a https://azure.microsoft.com/free/students/ 
+2.  Presiona **Start free** / **Activate now**.
+3.  Inicia sesión con tu **correo institucional** 
+4.  Verifica tu condición de estudiante (en Azure for Students) siguiendo las instrucciones en pantalla.
+5.  Completa el perfil (país, nombre, teléfono) y acepta los términos.
+6.  Al terminar, entra al portal: https://portal.azure.com
+7.  Comprueba en **Suscripciones** que aparece la suscripción activa 
+----------
 
-## Ambiente de pruebas
+## 3. Configuración inicial en la nube
 
-Ejecutar en la raíz del proyecto:
+### 3.1 Crear un grupo de recursos
 
-```
-npm start
-```
+1.  En el portal, busca **Grupos de recursos** (Resource groups) → **Crear**.
+2.  Suscripción: la que acabas de activar.
+3.  Nombre: Pokedex.
+4.  Región: West u 2.
+5.  **Revisar y crear** → **Crear**.
 
-## Referencias
+### 3.2 Crear la Static Web App
 
-- [Angular](https://angular.io/): One framework.
-- [Angular Folder Structure](https://angular-folder-structure.readthedocs.io/en/latest/): Create a skeleton structure which is flexible for projects big or small.
-- [Font Awesome](https://fontawesome.com/): The web's most popular icon set and toolkit.
-- [Normalize.css](https://necolas.github.io/normalize.css/): A modern, HTML5-ready alternative to CSS resets.
-- [PokéAPI](https://pokeapi.co/): The RESTful Pokémon API.
-=======
-# -pokedex
-- Como cree la cuenta de despliegue - Alejandro Paez Perez
-- 
->>>>>>> 46ddb0b5fc521d2fe3f20d3e565434eaa8a4f23c
+1.  En el buscador del portal escribe **Static Web Apps** → **Crear**.
+2.  **Datos básicos:**
+    -   Suscripción y grupo de recursos: los del paso anterior.
+    -   Nombre:  Pokedex-Alejnadro.
+    -   Tipo de plan: **Free**.
+    -   Región: West U 2
+3.  **Detalles de implementación:**
+    -   Origen: **GitHub**.
+    -   Inicia sesión con GitHub y autoriza a Azure.
+    -   Organización/usuario: `AlejandroPae`.
+    -   Repositorio: `pokedex`.
+    -   Rama: `main`.
+4.  **Detalles de compilación:**
+    -   Valor preestablecido: **Angular**.
+    -   Ubicación de la aplicación (`app_location`): `/`
+    -   Ubicación de salida (`output_location`): `dist/pokedex-angular`
+5.  **Revisar y crear** → **Crear**.
+
+
+----------
+
+## 4. Verificación
+
+1.  Abre la URL del recurso 
+2.  En GitHub, pestaña **Actions**, verifica que el workflow **Azure Static Web Apps CI/CD** termina en verde.
+----------
+
+## 5. Resultado de seguridad
+
+El sitio fue escaneado en https://securityheaders.com con calificación **A**.
+
+
+Los detalles de la configuración están en Despliegue.md
+
+----------
